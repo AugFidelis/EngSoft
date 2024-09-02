@@ -1,0 +1,5 @@
+salario = float(input("Insira o salário atual: "))
+aumento = float(input("Insira o aumento do salário em %: "))
+cargo = str(input("Qual é o cargo tendo o salário alterado? "))
+salario = salario + (salario * aumento / 100)
+print("O novo salário do cargo de",cargo,"é igual a:",salario)
