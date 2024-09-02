@@ -12,6 +12,10 @@ def home_page():
 
     return render_template("index.html", frutas_do_html=frutas)
 
+@app.route('/segundapagina', methods = ('GET', 'POST'))
+def segunda_pagina():
+
+    return render_template("index2.html", frutas_do_html=frutas)
 
 if __name__ == '__main__':
     app.run(debug=True)

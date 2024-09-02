@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segunda Pagina</title>
+</head>
+<body>
+    <h1>Lista de frutas:</h1>
+    <ul>
+        {% for fruta in frutas_do_html %}
+          <li>{{ fruta }}</li>
+        {% endfor %}  
+      </ul>
+      <hr>
+      <form action="{{url_for('home_page')}}" method="POST">
+        <button type="submit">Ir para Pagina Inicial</button>
+      </form>
+</body>
+</html>
