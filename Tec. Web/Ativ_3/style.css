@@ -1,0 +1,46 @@
+#css_externo{
+    background-color: #f0f0f0;
+}
+/*-----------------------------------------*/
+
+p{
+    size: 14px;
+    color: #333;
+}
+
+h2{
+    background-color: #e0e0e0;
+    padding: 10px;
+}
+
+li{
+    list-style: none;
+}
+/*-----------------------------------------*/
+
+.caixa-azul{
+    background-color: lightskyblue;
+    color: white;
+}
+
+.caixa-verde{
+    background-color: greenyellow;
+    color: black;
+}
+
+#caixa-vermelha{
+    border: solid 5px red;
+    font-weight: bold;
+}
+/*------------------------------------------*/
+
+.menu a{
+    background-color: #333;
+    color: #fff;
+}
+
+.menu ul li{
+    list-style: none;
+}
+/*------------------------------------------*/
+
