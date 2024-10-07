@@ -1,0 +1,48 @@
+#div1{
+    background-color: aquamarine;
+    color: rgb(183, 0, 255);
+}
+
+#div2{
+    background-color: red;
+    color: rgb(0, 255, 17);
+}
+
+#div3{
+    background-color: purple;
+    color: rgb(51, 224, 255);
+}
+
+#div4{
+    background-color: yellowgreen;
+    color: rgb(43, 13, 12);
+}
+
+#div5{
+    background-color: lightsalmon;
+    color: rgb(255, 0, 85);
+}
+/*----------------------------------------------------*/
+
+.box1{
+    margin: 20px;
+    padding: 10px;
+    border: solid 2px;
+    border-color: blue;
+}
+
+.box2{
+    box-sizing: border-box;
+    width: 200px;
+    height: 100px;
+}
+
+.box3{
+    margin: 30px;
+}
+
+.box4{
+    border-radius: 10px;
+    background-color: blueviolet;
+    box-shadow: 5px 3px #000;
+}
