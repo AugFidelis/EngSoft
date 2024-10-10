@@ -15,7 +15,7 @@ tempo_total = 0
 hora_extra = 0
 
 for i in range(D):
-    tempo_dia = 1
+    tempo_dia = 0
     num_periodos = int(input())
     
     for j in range(num_periodos):
@@ -24,6 +24,8 @@ for i in range(D):
         
         for k in range(inicio, fim):
             
+            tempo_dia += 1
+
             if(tempo_dia <= 8):
                 tempo_total += 1 
                 #print(f"hora NORMAL {k} : {hora_extra} horas extras")
@@ -32,7 +34,6 @@ for i in range(D):
                 hora_extra += 1
                 #print(f"hora {k} : {hora_extra} horas extras")
 
-            tempo_dia += 1
             #print(f"TEMPO DIA: {tempo_dia}")
             
 
