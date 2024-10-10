@@ -26,25 +26,16 @@ for i in range(D):
             
             tempo_dia += 1
 
-            if(tempo_dia <= 8):
-                tempo_total += 1 
-                #print(f"hora NORMAL {k} : {hora_extra} horas extras")
-            else:
-                tempo_total += 1
+            if(tempo_dia > 8):
                 hora_extra += 1
-                #print(f"hora {k} : {hora_extra} horas extras")
 
-            #print(f"TEMPO DIA: {tempo_dia}")
+            tempo_total += 1
             
-
-excedente = 0
 if(tempo_total - hora_extra > 44):
-    excedente = (tempo_total - hora_extra) - 44
-    #print(f"excedente = {excedente}")
+    hora_extra = hora_extra + (tempo_total - hora_extra) - 44
 
-valor_total = (V * tempo_total) + (V/2 * hora_extra) + (V/2 * excedente)
+valor_total = (V * tempo_total) + (V/2 * hora_extra)
 
 print(f"Horas trabalhadas: {tempo_total}")
 print(f"Horas extras: {hora_extra}")
 print(f"Valor devido: R$ {valor_total :.2f}")
-                
