@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Flexbox</title>
+    <style>
+        body{
+            background-color: darkolivegreen;
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            /* justify-content: space-between; */
+            height: 200px;
+            align-items: center;
+            padding: 10px;
+        }
+        .container div{
+            color: white;
+        }
+        .item1{
+            /* flex-grow: 1; */
+            flex-shrink: 1;
+        }
+        .item2{
+            /* flex-grow: 2; */
+            flex-shrink: 2;
+        }
+        .item3{
+            flex-grow: 3;
+        }
+        .navbar{
+            display: flex;
+            justify-content: space-between;
+            background-color: #444;
+            padding: 10px; /*Aumenta o tamanho da caixa cinza em volta do link*/
+        }
+        .navbar a{
+            color: white;
+            text-decoration: none; /*Remove a linha do link*/
+        }
+        .gallery{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center; /*Alinha o conteúdo no eixo horizontal principal*/
+        }
+        .gallery div{
+            flex-basis: 30%;
+            
+        }
+        .gallery img{
+            height: 200px;
+            
+        }
+        header, footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        .main-content {
+            display: flex;
+        }
+        .content {
+            flex: 3;
+            padding: 20px;
+            color: white;
+        }
+        .sidebar {
+            flex: 1;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sapos</h1>
+    </header>
+      
+    <nav class="navbar">
+        <a href="#">Home</a>
+        <a href="#">Sobre</a>
+        <a href="#">Contato</a>
+    </nav>
+
+    <div class="main-content">
+        <div class="content">Conteúdo Principal</div>
+        <div class="sidebar">Barra Lateral</div>
+    </div>
+    
+    <div class="container">
+        <div class="item1">Bom dia</div>
+        <div class="item2">Boa tarde</div>
+        <div class="item3">Boa noite</div>
+    </div>
+
+    <div class="gallery">
+        <img src="https://assets.petco.com/petco/image/upload/f_auto,q_auto/green-tree-frog-care-sheet-hero" alt="Sapo verde">
+        <img src="https://d1jyxxz9imt9yb.cloudfront.net/medialib/3078/image/s768x1300/IP202207_GlassFrogs_009_365211_reduced.jpg" alt="Outro sapo verde">
+        <img src="https://musicofnature.com/wp-content/uploads/2016/04/spring_peeper_1-800x500.jpg" alt="Sapo marrom">
+    </div>
+
+    <footer>Rodapé</footer>
+</body>
+</html>
