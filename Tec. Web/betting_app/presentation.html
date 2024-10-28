@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Inheritance no Flask</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fa;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #slide-container {
+            width: 100%;
+            max-width: 1000px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            padding: 40px;
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            font-size: 1.5rem;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        h1, h2 {
+            font-family: 'Georgia', serif;
+            color: #003366;
+            font-size: 2rem;
+        }
+
+        p, ul {
+            font-size: 1.4rem;
+        }
+
+        pre {
+            background-color: #f0f3f7;
+            padding: 20px;
+            border-radius: 8px;
+            overflow: auto;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:disabled {
+            background-color: #b0c4de;
+            cursor: not-allowed;
+        }
+
+        button:hover:not(:disabled) {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div id="slide-container">
+    <div id="slide">
+        <!-- O conteúdo dos slides será exibido aqui -->
+    </div>
+    <div class="navigation">
+        <button id="prev" onclick="prevSlide()">Anterior</button>
+        <button id="next" onclick="nextSlide()">Próximo</button>
+    </div>
+</div>
+
+<script>
+    // Conteúdo dos slides
+    const slides = [
+        `<h1>Introdução ao Template Inheritance no Flask</h1>
+         <p>O Template Inheritance permite que você crie um layout base para o seu site, 
+         onde as páginas filhas podem herdar e customizar essa estrutura. Isso promove 
+         consistência, organização e facilidade de manutenção no desenvolvimento de sites.</p>`,
+
+        `<h2>Vantagens do Template Inheritance</h2>
+         <ul>
+             <li><strong>Reutilização de Código:</strong> Reduz duplicação de código ao criar um template base.</li>
+             <li><strong>Facilidade de Manutenção:</strong> Atualizações no layout são feitas apenas no template base.</li>
+             <li><strong>Consistência Visual:</strong> Todas as páginas seguem o mesmo estilo e estrutura geral.</li>
+         </ul>`,
+
+        `<h2>Estrutura do Template Base</h2>
+         <p>O template base serve como esqueleto. Ele contém blocos, áreas onde o conteúdo pode ser 
+         substituído pelos templates filhos. No Flask, utilizamos Jinja2 para definir esses blocos.</p>
+         <pre><code>&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"&gt;
+    &lt;title&gt;{% block title %}{% endblock %}&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;header&gt; Cabeçalho &lt;/header&gt;
+    &lt;main&gt;{% block content %}{% endblock %}&lt;/main&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+         </code></pre>`,
+
+        `<h2>O que são Blocos?</h2>
+         <p>Blocos são áreas onde os templates filhos podem inserir seu conteúdo específico. 
+         Eles são definidos com <code>{% block nome_do_bloco %}</code> e finalizados com 
+         <code>{% endblock %}</code>.</p>
+         <p>Por exemplo, um bloco <code>content</code> pode ser usado para preencher o conteúdo principal de uma página.</p>`,
+
+        `<h2>Template Filho: Extendendo o Template Base</h2>
+         <p>Os templates filhos usam o comando <code>{% extends "base.html" %}</code> para herdar o template base. 
+         Eles podem substituir os blocos para customizar o conteúdo de acordo com cada página.</p>
+         <pre><code>{% extends "base.html" %}
+{% block title %}Página Inicial{% endblock %}
+{% block content %}
+    &lt;h1&gt;Bem-vindo à Página Inicial&lt;/h1&gt;
+    &lt;p&gt;Aqui você encontra informações principais.&lt;/p&gt;
+{% endblock %}
+         </code></pre>`,
+
+        `<h2>Herança de Blocos com <code>{{ super() }}</code></h2>
+         <p>O comando <code>{{ super() }}</code> permite que o conteúdo do template base seja incluído no 
+         template filho. Útil para manter o conteúdo padrão e adicionar elementos específicos no template filho.</p>
+         <pre><code>{% block head %}
+{{ super() }}
+&lt;style&gt;
+    .highlight { color: blue; }
+&lt;/style&gt;
+{% endblock %}
+         </code></pre>`,
+
+        `<h2>Estrutura de uma Aplicação com Template Inheritance</h2>
+         <p>Veja como seria organizada uma aplicação Flask utilizando Template Inheritance:</p>
+         <pre><code>betting_app/
+├── app.py
+├── templates/
+│   ├── base.html
+│   ├── home.html
+│   ├── sports.html
+│   └── casino.html
+└── static/
+    └── style.css
+         </code></pre>`,
+
+        `<h2>Resumo dos Conceitos</h2>
+         <ul>
+             <li>O template base cria uma estrutura comum para o site.</li>
+             <li>Templates filhos herdam e personalizam os blocos do template base.</li>
+             <li>O uso de <code>{{ super() }}</code> permite adicionar conteúdo mantendo o original.</li>
+         </ul>`,
+
+        `<h2>Exercício Prático</h2>
+         <p><strong>Objetivo:</strong> Crie uma aplicação Flask simples de "Loja de Livros" que usa Template Inheritance.</p>
+         <ol>
+             <li>Crie um template base chamado <code>layout.html</code> com blocos para <code>title</code>, 
+             <code>header</code>, <code>content</code> e <code>footer</code>.</li>
+             <li>Crie um template filho <code>home.html</code> para a página inicial com uma breve apresentação da loja.</li>
+             <li>Crie um segundo template filho <code>books.html</code> para exibir uma lista de livros fictícios disponíveis.</li>
+             <li>Use o comando <code>{{ super() }}</code> em algum bloco do template filho.</li>
+         </ol>
+         <p>Este exercício ajudará a fixar os conceitos de Template Inheritance e uso de blocos no Flask.</p>`
+    ];
+
+    let currentSlide = 0;
+    const slideContainer = document.getElementById('slide');
+    const prevButton = document.getElementById('prev');
+    const nextButton = document.getElementById('next');
+
+    function showSlide(index) {
+        slideContainer.innerHTML = slides[index];
+        prevButton.disabled = index === 0;
+        nextButton.disabled = index === slides.length - 1;
+        slideContainer.style.opacity = '0';
+        setTimeout(() => {
+            slideContainer.style.transform = 'translateX(10px)';
+            slideContainer.style.opacity = '1';
+            slideContainer.style.transform = 'translateX(0)';
+        }, 100);
+    }
+
+    function nextSlide() {
+        if (currentSlide < slides.length - 1) {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+    }
+
+    function prevSlide() {
+        if (currentSlide > 0) {
+            currentSlide--;
+            showSlide(currentSlide);
+        }
+    }
+
+    showSlide(currentSlide);
+</script>
+
+</body>
+</html>

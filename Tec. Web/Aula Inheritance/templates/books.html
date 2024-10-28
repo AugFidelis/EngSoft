@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}Livros{% endblock %}
+
+{% block head %}
+{{ super() }} 
+<style>
+    body{
+        background-color: lightcoral;
+    }
+</style> 
+{% endblock %}
+
+{% block content %}
+<ul>
+    <li>Livro 1</li>
+    <li>Livro 2</li>
+    <li>Livro 3</li>
+    <li>Livro 4</li>
+    <li>Livro 5</li>
+</ul>
+{% endblock %}
+
+{% block footer %}Copyright livraria{% endblock %}

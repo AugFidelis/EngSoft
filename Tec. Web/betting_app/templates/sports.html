@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Sports Betting{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <style>
+        .sports-highlight { color: red; }
+    </style>
+{% endblock %}
+
+{% block content %}
+<h2>Sports Betting</h2>
+<p class="sports-highlight">Aposte nos seus esportes favoritos!</p>
+{% endblock %}
