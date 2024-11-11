@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade Javascript</title>
+</head>
+<body>
+    <script>
+        document.write("Hello, world!\n")
+
+        document.write(document.title)
+
+        document.write(document.URL);
+    </script>
+
+    <br><br>
+
+    <button onclick="alert('Botão apertado!!!')">
+        Me aperte!
+    </button>
+
+    <p id="texto">Olá!</p>
+
+    <button onclick="alterartexto()">
+        Alterar texto
+    </button>
+
+    <button onclick="alterarimagem()">
+        Alterar imagem
+    </button>
+
+    <br>
+
+    <img id="imagem" src="https://static.significados.com.br/foto/crocodilo-e-jacare-og.jpg?class=ogImageWide" style="height: 200px;">
+
+    <br>
+
+    <form onsubmit="verificarvazio(event)">
+        <label for="formulario">Insira texto:</label>
+        <input type="text" id="formulario" name="formulario">
+        <button type="submit">Enviar</button>
+    </form>
+
+    <p id="contador">0</p>
+
+    <div id="listaNomes"></div>
+
+    <script>
+        function alterartexto(){
+            document.getElementById('texto').innerHTML = "Hello!"
+        }
+
+        function alterarimagem(){
+            var imagem = document.getElementById('imagem');
+            
+            if(imagem.src.includes('https://static.significados.com.br/foto/crocodilo-e-jacare-og.jpg?class=ogImageWide')){
+                imagem.src = 'https://s2.glbimg.com/C705skV183BpWyOBZp-rj53Sgow=/e.glbimg.com/og/ed/f/original/2018/08/29/f1.jpg'
+            }
+           else{
+                imagem.src = 'https://static.significados.com.br/foto/crocodilo-e-jacare-og.jpg?class=ogImageWide'
+            }
+        }
+
+        function verificarvazio(event){
+            var form = document.getElementById("formulario").value;
+
+            if(form.trim() === ""){
+                alert('O campo não pode estar vazio!');
+                event.preventDefault();
+            }
+        }
+
+        var tempo = 0;
+        function contatempo(){
+            tempo++;
+            document.getElementById('contador').innerHTML = tempo
+        }
+
+        setInterval(contatempo, 1000);
+
+        const nomes = ["nome1", "nome2", "nome3", "nome4", "nome5"];
+        
+        const listaNomesDiv = document.getElementById("listaNomes");
+
+        for (let i = 0; i < nomes.length; i++) {
+            const nomeElemento = document.createElement("p"); //Cria um parágrafo
+            nomeElemento.textContent = nomes[i]; //Altera o texto do paragrafo para o nome atual da lista
+            listaNomesDiv.appendChild(nomeElemento); //Adiciona o nome para a lista dentro do div
+        }
+    </script>
+
+    <script>
+        variavel = 42;
+        console.log("Valor:", variavel, "Tipo:", typeof variavel); // typeof [variavel] exibe o tipo da variavel
+
+        variavel = 'Hello, world!';
+        console.log("Valor:", variavel, "Tipo:", typeof variavel);
+
+        variavel = true;
+        console.log("Valor:", variavel, "Tipo:", typeof variavel);
+    </script>
+
+    
+</body>
+</html>

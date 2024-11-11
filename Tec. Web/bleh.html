@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Validação de Formulário</title>
+  <script>
+    // Função para validar o formulário
+    function validarFormulario(event) {
+      // Obtém o valor do campo de entrada pelo ID
+      const campo = document.getElementById("campoEntrada").value;
+      
+      // Verifica se o campo está vazio
+      if (campo.trim() === "") {
+        // Exibe um alerta de erro e impede o envio do formulário
+        alert("O campo não pode estar vazio!");
+        event.preventDefault(); // Impede o envio do formulário
+      }
+    }
+  </script>
+</head>
+<body>
+  <h2>Formulário de Validação</h2>
+  <!-- Formulário com evento onsubmit para validação -->
+  <form onsubmit="validarFormulario(event)">
+    <label for="campoEntrada">Digite algo:</label>
+    <input type="text" id="campoEntrada" name="campoEntrada">
+    <button type="submit">Enviar</button>
+  </form>
+</body>
+</html>
