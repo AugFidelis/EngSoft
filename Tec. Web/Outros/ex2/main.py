@@ -10,4 +10,5 @@ app = Flask(__name__)
 app.register_blueprint(home_rota) # Registra o grupo criado no home.py no arquivo principal
 app.register_blueprint(cliente_rota, url_prefix='/clientes')
 
-app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)

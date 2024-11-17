@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%  block titulo  %}Titulo do site{%  endblock  %}</title>
+</head>
+<body>
+    <nav>
+        <div>
+            <a href="/">Home</a>
+            <a href="/login">Login</a>
+            <a href="/sign-up">Sign up</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+
+    {%  with mensagens = get_flashed_messages(with_categories=true)  %}
+    {%  if mensagens  %}
+        {%  for categoria, mensagem in mensagens  %}
+            {%  if categoria == 'erro'  %}
+                <div style="color: red;">
+                    {{  mensagem  }}
+                </div>
+            {%  else  %}
+                <div style="color: green;">
+                    {{  mensagem  }}
+                </div>
+            {%  endif  %}
+        {%  endfor  %}
+    {%  endif  %}
+    {%  endwith  %}
+
+    <div>
+        {%  block conteudo  %}{%  endblock  %}
+    </div>
+
+    <script>
+        type="text/javascript"
+        src="{{  url_for('static', filename='index.js')  }}"
+    </script>
+</body>
+</html>
