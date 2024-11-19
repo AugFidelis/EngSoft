@@ -1,0 +1,27 @@
+{%  extends "base.html"  %} <!--  Puxa a página do base.html  -->
+
+{%  block titulo  %}Sign up{%  endblock  %}
+
+{%  block conteudo  %}
+<form method="post">
+    <h3>Sign up</h3>
+    <div>
+        <label for="email">Endereço de email</label>
+        <input type="email" id="email" name="email" placeholder="Insira seu email"> 
+        <!-- O name é usado pro envio pro backend -->
+
+        <label for="primeiro_nome">Primeiro Nome</label>
+        <input type="text" id="primeiro_nome" name="primeiro_nome" placeholder="Insira seu primeiro nome">
+
+        <label for="senha1">Senha</label>
+        <input type="password" id="senha1" name="senha1" placeholder="Insira sua senha">
+
+        <label for="senha2">Confirmar senha</label>
+        <input type="password" id="senha2" name="senha2" placeholder="Confirme sua senha">
+
+        <br>
+
+        <button type="submit">Enviar</button>
+    </div>
+</form>
+{%  endblock  %}
