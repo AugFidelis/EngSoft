@@ -91,6 +91,14 @@ print(string2 * 3) #RESULTADO: 'Boa noiteBoa noiteBoa noite'
 
 
 
+#List transforma um string em lista
+
+listastr = list(string2)
+
+#listastr = [B, o, a,  ,n, o, i, t, e]
+
+
+
 #UPPER e LOWER convertem para maiúscula ou minúscula:
 
 string2.upper() #RESULTADO: 'BOA NOITE'
