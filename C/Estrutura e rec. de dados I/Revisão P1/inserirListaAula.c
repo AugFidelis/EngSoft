@@ -6,6 +6,8 @@ struct No{
     struct No *proximo;
 };
 
+//------------------------------------------------------------------------------------------------------------------
+
 struct No* inserirFront(int info, struct No *cabeca){
 
     struct No *novoNo = (struct No*) malloc(sizeof(struct No)); 
@@ -17,6 +19,8 @@ struct No* inserirFront(int info, struct No *cabeca){
     return novoNo;
 
 }
+
+//------------------------------------------------------------------------------------------------------------------
 
 struct No* inserirEnd(int info, struct No *cabeca){
     
@@ -47,6 +51,8 @@ struct No* inserirEnd(int info, struct No *cabeca){
     }
 }
 
+//------------------------------------------------------------------------------------------------------------------
+
 struct No* inserirIntermed(int info, struct No *cabeca, int posicao){
     struct No *novoNo = (struct No*) malloc(sizeof(struct No));
 
@@ -62,6 +68,7 @@ struct No* inserirIntermed(int info, struct No *cabeca, int posicao){
     int contador = 0;
     while(contador < posicao-1 && noAtual->proximo != NULL){
         noAtual = noAtual->proximo;
+        contador++;
     }
 
     if (noAtual == NULL) {
@@ -77,6 +84,90 @@ struct No* inserirIntermed(int info, struct No *cabeca, int posicao){
     //Muda o próximo do nó antes do Novo nó para conectar o Novo nó na lista
 
 }
+
+//------------------------------------------------------------------------------------------------------------------
+
+struct No* removerFront(struct No *cabeca){
+    if(cabeca == NULL){
+        printf("A lista já está vazia!");
+        return cabeca;
+    }
+
+    struct No *noRemovido = cabeca;
+
+    cabeca = cabeca->proximo; //A nova cabeça agora é o segundo (próximo) da lista
+
+    free(noRemovido); //Libera o espaço da memória sendo consumido pelo nó que foi removido
+
+    return cabeca;
+}
+
+//------------------------------------------------------------------------------------------------------------------
+
+struct No* removerEnd(struct No *cabeca){
+    if(cabeca == NULL){
+        printf("A lista já está vazia!");
+        return cabeca;
+    }
+
+    if(cabeca->proximo == NULL){
+        free(cabeca);
+        return NULL;
+    }
+
+    struct No *noAtual = cabeca;
+    struct No *proximoNo = noAtual->proximo;
+
+    while(proximoNo->proximo != NULL){
+        noAtual = noAtual->proximo;
+        proximoNo = proximoNo->proximo;
+    }
+
+    noAtual->proximo = NULL;
+    free(proximoNo);
+
+    return(cabeca);
+}
+
+//------------------------------------------------------------------------------------------------------------------
+
+struct No* removerIntermed(struct No *cabeca, int posicao){
+    if(cabeca == NULL){
+        printf("Lista vazia!");
+        return NULL;
+    }
+
+    if(posicao == 0){ //Caso for 0 (o primeiro item da lista)
+        struct No *noRemovido = cabeca;
+        cabeca = cabeca->proximo;
+        free(noRemovido);
+        return cabeca;
+    }
+    
+    struct No *noAnterior = cabeca;
+    
+    int contador = 0;
+
+    while(contador < posicao-1 && noAnterior != NULL){
+        noAnterior = noAnterior->proximo;
+        contador++;
+    }
+
+    if(noAnterior == NULL || noAnterior->proximo == NULL){ //Caso o nó não conseguir chegar na posição e atingir um null
+        printf("Posicao invalida!");
+        return cabeca;
+    }
+
+    struct No *noRemovido = noAnterior->proximo;
+
+    noAnterior->proximo = noRemovido->proximo;
+
+    free(noRemovido);
+
+    return cabeca;
+}
+
+//------------------------------------------------------------------------------------------------------------------
 
 void imprimirLista(struct No *cabeca){
     if(cabeca == NULL){
@@ -94,6 +185,8 @@ void imprimirLista(struct No *cabeca){
         printf("-> %d ",noAtual->dado);
     }
 }
+
+//------------------------------------------------------------------------------------------------------------------
 
 int main(){
     struct No *cabeca = NULL;
