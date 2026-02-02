@@ -317,6 +317,8 @@ void testCap5_2(List<String>? names){
 
 //------------------------------------------------------------------------------------------------
 
+////-- Extensions --
+
 // class Cat{
 //   final String name;
 //   Cat(this.name);
@@ -352,19 +354,86 @@ void testCap5_2(List<String>? names){
 
 //------------------------------------------------------------------------------------------------
 
-Future<int> heavyFutureThatMultipliesByTwo(int a){
-  return Future.delayed(const Duration(seconds: 3), () => a * 2); // => é basicamente  {return a * 2}
-}
+////-- Future --
 
-void testCap7_2() async { //async permite o uso de funções assíncronas (ex: await)
-  final result = await heavyFutureThatMultipliesByTwo(10); 
-  //Sem await ele printa 'Instance of 'Future<int>' '
-  //await é usado para esperar pelo resultado de um Future
+// Future<int> heavyFutureThatMultipliesByTwo(int a){
+//   return Future.delayed(const Duration(seconds: 3), () => a * 2); // => é basicamente  {return a * 2}
+// }
+
+// void testCap7_2() async { //async permite o uso de funções assíncronas (ex: await)
+//   final result = await heavyFutureThatMultipliesByTwo(10); 
+//   //Sem await ele printa 'Instance of 'Future<int>' '
+//   //await é usado para esperar pelo resultado de um Future
   
-  print(result);
-}
+//   print(result);
+// }
 
 //------------------------------------------------------------------------------------------------
+
+////-- Streams --
+
+// Stream<String> getName(){
+//   return Stream.periodic(const Duration(seconds: 1), (value){
+//     return 'Foo';
+//   }); //A cada 1 segundo retorna a string 'Foo'
+// }
+
+// void testCap7_3() async {
+//   await for (final value in getName()){
+//     print(value);
+//   }
+//   print('Stream finished working');
+// }
+
+//------------------------------------------------------------------------------------------------
+
+////-- Generators --
+
+// Iterable<int> getOneTwoThree() sync*  { //sync* ou async* (tem que adicionar a tag de stream se for async*)
+//   yield 1;
+//   yield 2;
+//   yield 3;
+// }
+
+// void testCap7_4() async {
+//   for(final value in getOneTwoThree()){
+//     print(value);
+
+//     if(value ==2){
+//       break;
+//     }
+//   }
+// }
+
+//------------------------------------------------------------------------------------------------
+
+// //-- Generics --
+
+// class PairOfStrings{
+//   final String value1;
+//   final String value2;
+//   PairOfStrings(this.value1, this.value2);
+// }
+
+// class PairOfIntegers{
+//   final int value1;
+//   final String value2;
+//   PairOfIntegers(this.value1, this.value2);
+// }
+
+// //Ao invés das duas classes iguais:
+// class Pair<A, B> {
+//   final A value1;
+//   final B value2;
+//   Pair(this.value1, this.value2);
+// }
+
+// void testCap7_5() {
+//   final names = Pair('Foo', 20);
+// }
+
+//------------------------------------------------------------------------------------------------
+
 
 
 class MyApp extends StatelessWidget {
@@ -382,7 +451,10 @@ class MyApp extends StatelessWidget {
     // testCap6_3();
     // testCap6_4();
     // testCap7();
-    testCap7_2();
+    // testCap7_2();
+    // testCap7_3();
+    // testCap7_4();
+    // testCap7_5();
     
     return MaterialApp(
       title: 'Flutter Demo',
